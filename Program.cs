@@ -1,7 +1,11 @@
+using ASP.NET_Form.Models;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddSingleton<ICollection<Person>>(new List<Person>());
 
 var app = builder.Build();
 
