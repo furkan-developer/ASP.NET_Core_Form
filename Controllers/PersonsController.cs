@@ -39,7 +39,7 @@ namespace ASP.NET_Form.Controllers
             if (ModelState.IsValid)
             {
                 persons.Add(person);
-                return RedirectToAction(actionName:nameof(Index));
+                return View(viewName:"ApplyFeedBack",model:person);
             }
 
             return View(person);

@@ -1,0 +1,13 @@
+@model Person
+
+<div>
+    <h3 class="display-4">Congratulations @Model.FirstName @Model.LastName</h3>
+    <p class="lead">Your person has been <mark>added.</mark></p>
+    <p class="lead">Many thanks for your interest.</p>
+    <hr />
+
+    <div class="btn-group">
+        <a class="btn btn-outline-success" asp-action="Index">Persons</a>
+        <a class="btn btn-success" asp-action="Index" asp-controller="Home">Home</a>
+    </div>
+</div>
