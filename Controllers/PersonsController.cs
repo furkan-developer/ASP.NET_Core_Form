@@ -32,7 +32,7 @@ namespace ASP.NET_Form.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult Apply(
-        [Bind(nameof(Person.FirstName),nameof(Person.LastName))]
+        [Bind(nameof(Person.FirstName),nameof(Person.LastName),nameof(Person.HasProject))]
         [FromForm]
         Person person)
         {
@@ -40,7 +40,7 @@ namespace ASP.NET_Form.Controllers
             {
                 persons.Add(person);
                 TempData["ApplyStatus"] = "Person ekleme işlemi başarıyla gerçekleşti.";
-                
+
                 return RedirectToAction(actionName: nameof(Index));
             }
 

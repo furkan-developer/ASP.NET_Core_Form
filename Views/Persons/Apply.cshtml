@@ -21,7 +21,22 @@
         <input asp-for="LastName" class="form-control" />
         <span asp-validation-for="LastName" class="text-danger"></span>
     </div>
-    
+
+    <div class="form-check my-2">
+        <input asp-for="HasProject" class="form-check-input">
+        <label class="form-check-label" asp-for="HasProject">
+            Does he/she have a project ?
+        </label>
+    </div>
+
+    @* radio button (expire) *@
+ 
+    @* text aria comment*@
+
+    @* date time *@
+
+    @* select box  (select list)*@
+
     <div>
         <button class="btn btn-primary" type="submit">Apply</button>
         <a class="btn btn-warning" href="/">Home</a>
