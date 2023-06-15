@@ -13,5 +13,8 @@ namespace ASP.NET_Form.Models
         public string FirstName { get; set; } = string.Empty;
         public string LastName { get; set; } = string.Empty;
         public bool HasProject { get; set; }
+
+        [Required]
+        public int? Expire { get; set; }
     }
 }

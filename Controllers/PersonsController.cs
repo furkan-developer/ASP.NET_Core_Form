@@ -26,13 +26,22 @@ namespace ASP.NET_Form.Controllers
         [HttpGet]
         public IActionResult Apply()
         {
+
+            ViewBag.Expires = new Dictionary<int, string>()
+            {
+                { 1,"1 ay"},
+                { 3,"3 ay"},
+                { 6,"6 ay"},
+                { 12,"12 ay"}
+            };
+
             return View();
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult Apply(
-        [Bind(nameof(Person.FirstName),nameof(Person.LastName),nameof(Person.HasProject))]
+        [Bind(nameof(Person.FirstName),nameof(Person.LastName),nameof(Person.HasProject),nameof(Person.Expire))]
         [FromForm]
         Person person)
         {
@@ -44,6 +53,16 @@ namespace ASP.NET_Form.Controllers
                 return RedirectToAction(actionName: nameof(Index));
             }
 
+            // Validation hatalı olduğunda form tasarımı için tekrar buradan bir request olduğu için ViewBag deki data silinecek. Hata vermemesi için tekrar oluşturulmalıdır.
+
+            ViewBag.Expires = new Dictionary<int, string>()
+            {
+                { 1,"1 ay"},
+                { 3,"3 ay"},
+                { 6,"6 ay"},
+                { 12,"12 ay"}
+            };
+            
             return View(person);
         }
     }
