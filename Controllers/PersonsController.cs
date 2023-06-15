@@ -39,7 +39,9 @@ namespace ASP.NET_Form.Controllers
             if (ModelState.IsValid)
             {
                 persons.Add(person);
-                return View(viewName:"ApplyFeedBack",model:person);
+                TempData["ApplyStatus"] = "Person ekleme işlemi başarıyla gerçekleşti.";
+                
+                return RedirectToAction(actionName: nameof(Index));
             }
 
             return View(person);
