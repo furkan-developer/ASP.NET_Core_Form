@@ -1,9 +1,14 @@
 using ASP.NET_Form.Models;
+using FluentValidation;
+using FluentValidation.AspNetCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddFluentValidationAutoValidation();
+builder.Services.AddScoped<IValidator<Person>, PersonValidator>();
 
 builder.Services.AddSingleton<ICollection<Person>>(new List<Person>());
 
