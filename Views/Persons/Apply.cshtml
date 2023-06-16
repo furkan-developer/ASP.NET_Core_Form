@@ -55,7 +55,12 @@
         <span class="text-danger" asp-validation-for="Birthday"></span>
     </div>
 
-    @* select box (select list)*@
+    <div class="my-2">
+        <label asp-for="Experience"></label>
+        <select class="form-select" asp-for="Experience" asp-items="@ViewBag.Experience">
+            <option selected value="0">Don't have experience</option>
+        </select>
+    </div>
 
     <div>
         <button class="btn btn-primary" type="submit">Apply</button>

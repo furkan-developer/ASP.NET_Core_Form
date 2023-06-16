@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using ASP.NET_Form.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Extensions.Logging;
 
 namespace ASP.NET_Form.Controllers
@@ -35,6 +36,12 @@ namespace ASP.NET_Form.Controllers
                 { 12,"12 ay"}
             };
 
+            ViewBag.Experience = new SelectList(new List<ExperienceSelectList>(){
+                new ExperienceSelectList(){Data=0,DataText="Don't have experience"},
+                new ExperienceSelectList(){Data=1,DataText="One year"},
+                new ExperienceSelectList(){Data=3,DataText="Three year"},
+                new ExperienceSelectList(){Data=5,DataText="Five year"},
+            },nameof(ExperienceSelectList.Data),nameof(ExperienceSelectList.DataText),0);
             return View();
         }
 
@@ -61,7 +68,7 @@ namespace ASP.NET_Form.Controllers
                 { 6,"6 ay"},
                 { 12,"12 ay"}
             };
-            
+
             return View(person);
         }
     }
