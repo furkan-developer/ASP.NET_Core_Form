@@ -41,7 +41,6 @@ namespace ASP.NET_Form.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult Apply(
-        [Bind(nameof(Person.FirstName),nameof(Person.LastName),nameof(Person.HasProject),nameof(Person.Expire),nameof(Person.Comment))]
         [FromForm]
         Person person)
         {

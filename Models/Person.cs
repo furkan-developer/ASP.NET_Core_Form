@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc.ModelBinding;
 
 namespace ASP.NET_Form.Models
 {
+    [Bind(nameof(Person.FirstName),nameof(Person.LastName),nameof(Person.HasProject),nameof(Person.Expire),nameof(Person.Comment),nameof(Person.Birthday))]
     public class Person
     {
         public string FirstName { get; set; } = string.Empty;
@@ -19,5 +20,8 @@ namespace ASP.NET_Form.Models
 
         [MaxLength(20)]
         public string Comment { get; set; }
+
+        [Required]
+        public DateTime Birthday { get; set; }
     }
 }
