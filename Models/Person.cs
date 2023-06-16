@@ -16,5 +16,8 @@ namespace ASP.NET_Form.Models
 
         [Required]
         public int? Expire { get; set; }
+
+        [MaxLength(20)]
+        public string Comment { get; set; }
     }
 }
