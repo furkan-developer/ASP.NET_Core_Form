@@ -53,10 +53,19 @@ namespace ASP.NET_Form.Controllers
         {
             if (ModelState.IsValid)
             {
-                persons.Add(person);
-                TempData["ApplyStatus"] = "Person ekleme işlemi başarıyla gerçekleşti.";
+                try
+                {
+                    throw new Exception("Person eklenir iken server da hata oluştu");
 
-                return RedirectToAction(actionName: nameof(Index));
+                    persons.Add(person);
+                    TempData["ApplyStatus"] = "Person ekleme işlemi başarıyla gerçekleşti.";
+
+                    return RedirectToAction(actionName: nameof(Index));
+                }
+                catch (System.Exception ex)
+                {
+                    ModelState.AddModelError(string.Empty,ex.Message);
+                }
             }
 
             // Validation hatalı olduğunda form tasarımı için tekrar buradan bir request olduğu için ViewBag deki data silinecek. Hata vermemesi için tekrar oluşturulmalıdır.
