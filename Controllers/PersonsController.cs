@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 using ASP.NET_Form.Models;
 using Microsoft.AspNetCore.Mvc;
@@ -47,7 +48,7 @@ namespace ASP.NET_Form.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Apply(
+        public async Task<IActionResult> Apply(
         [FromForm]
         Person person)
         {
@@ -55,7 +56,29 @@ namespace ASP.NET_Form.Controllers
             {
                 try
                 {
-                    throw new Exception("Person eklenir iken server da hata oluştu");
+                    // throw new Exception("Person eklenir iken server da hata oluştu");
+
+                    // Create path for store image
+                    string path = Path.Combine(Directory.GetCurrentDirectory(),"wwwroot","images");
+
+                    if(!Directory.Exists(path))
+                        Directory.CreateDirectory(path);
+
+                    // Create unique file name
+                    StringBuilder fileNameBuilder = new StringBuilder(Guid.NewGuid().ToString());
+                    fileNameBuilder.Append(Path.GetExtension(person.File.FileName));
+
+                    string fileNameWithExtension = fileNameBuilder.ToString();
+                    path = Path.Combine(path,fileNameWithExtension);
+
+                    // Store to server
+                    using(var stream = new FileStream(path:path,mode:FileMode.Create))
+                    {
+                        await person.File.CopyToAsync(stream);
+                    }
+
+                    // Add path to person object
+                    person.ImagePath = String.Concat("/images/",fileNameWithExtension);
 
                     persons.Add(person);
                     TempData["ApplyStatus"] = "Person ekleme işlemi başarıyla gerçekleşti.";
